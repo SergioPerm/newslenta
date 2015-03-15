@@ -12,26 +12,62 @@ function sortByDateTime($a,$b)
 
 }
 
-function news_getall()
-{
-    $sqltext = 'SELECT * FROM news';
-    $news = sql_query($sqltext);
+abstract class NewsArticle {
+    public $title;
+    public $content;
 
-    usort($news,'sortByDateTime');
+    public function newsGetAll() {
+        $sqltext = 'SELECT * FROM news';
 
-    return $news;
-}
+        $BDNews = new BDNews('localhost','root','','newslenta');
+        $news = $BDNews->receiveData($sqltext);
 
-function news_insert($data)
-{
-    $sqltext =
-        "INSERT INTO news
+        usort($news,'sortByDateTime');
+
+        return $news;
+    }
+
+    public function newsInsert($data) {
+        $sqltext =
+            "INSERT INTO news
         (datetime,title,content)
         VALUES
         (NOW(),'" . $data['title'] . "','" . $data['content'] . "')";
 
-    sql_exec($sqltext);
+        $BDNews = new BDNews('localhost','root','','newslenta');
+        $BDNews->execData($sqltext);
+    }
 }
+
+class NewsLenta extends NewsArticle {
+
+}
+//function news_getall()
+//{
+//    $sqltext = 'SELECT * FROM news';
+//
+//    $BDNews = new BDNews('localhost','root','','newslenta');
+//    $news = $BDNews->receiveData($sqltext);
+//
+////    $news = sql_query($sqltext);
+//
+//    usort($news,'sortByDateTime');
+//
+//    return $news;
+//}
+//
+//function news_insert($data)
+//{
+//    $sqltext =
+//        "INSERT INTO news
+//        (datetime,title,content)
+//        VALUES
+//        (NOW(),'" . $data['title'] . "','" . $data['content'] . "')";
+//
+//    $BDNews = new BDNews('localhost','root','','newslenta');
+//    $BDNews->execData($sqltext);
+////    sql_exec($sqltext);
+//}
 
 
 
