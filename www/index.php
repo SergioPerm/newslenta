@@ -15,6 +15,9 @@ if (!empty($_POST)) {
         //определим текущую дату и добавим к новости
         $tek_data = date("d.m.Y") . " " .date("H:i:s");
         $data['datetime'] = $tek_data;
+
+        NewArticle = new NewsA
+
         news_insert($data);
     }
 }
