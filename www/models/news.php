@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../functions/sql.php';
+require_once __DIR__ . '/../classes/DB.php';
 
 function sortByDateTime($a,$b)
 {
@@ -12,36 +12,30 @@ function sortByDateTime($a,$b)
 
 }
 
-abstract class NewsArticle {
+class News {
+    public $id;
     public $title;
     public $content;
 
-    public function newsGetAll() {
-        $sqltext = 'SELECT * FROM news';
-
-        $BDNews = new BDNews('localhost','root','','newslenta');
-        $news = $BDNews->receiveData($sqltext);
-
-        usort($news,'sortByDateTime');
-
-        return $news;
+    public static function getAll()
+    {
+        $db = new DB;
+        return $db->query('SELECT * FROM news ORDER BY datetime DESC', 'News');
     }
 
-    public function newsInsert($data) {
+    public static function insert_news($data)
+    {
         $sqltext =
-            "INSERT INTO news
+        "INSERT INTO news
         (datetime,title,content)
         VALUES
         (NOW(),'" . $data['title'] . "','" . $data['content'] . "')";
 
-        $BDNews = new BDNews('localhost','root','','newslenta');
-        $BDNews->execData($sqltext);
+        $db = new DB;
+        return $db->execQuery($sqltext);
     }
 }
 
-class NewsLenta extends NewsArticle {
-
-}
 //function news_getall()
 //{
 //    $sqltext = 'SELECT * FROM news';
