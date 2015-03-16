@@ -13,9 +13,9 @@
     </tr>
     <?php foreach ($items as $item) : ?>
         <tr>
-            <td><?php echo $item['datetime'];?></td>
-            <td><b><?php echo $item['title'];?></b><br/><br/>
-                <?php echo $item['content'];?></td>
+            <td><?php echo $item->datetime;?></td>
+            <td><b><?php echo $item->title;?></b><br/><br/>
+                <?php echo $item->content;?></td>
         </tr>
     <?php endforeach; ?>
 </table>
