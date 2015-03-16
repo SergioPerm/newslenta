@@ -1,31 +1,21 @@
 <?php
+//Фронт контроллер
+$ctrl = isset($_GET['ctrl']) ? $_GET['ctrl'] : 'News';
+$act = isset($_GET['act']) ? $_GET['act'] : 'All';
 
-require __DIR__ . '/models/news.php';
+$controllerClassName = $ctrl . 'Controller';
+
+require_once __DIR__ . '/controllers/' . $controllerClassName . '.php';
+
+$controllerNews = new $controllerClassName;
+$method = 'action' . $act;
 
 if (!empty($_POST)) {
-    $data = [];
-    if (!empty($_POST['title'])) {
-        $data['title'] = $_POST['title'];
-    }
-    if (!empty($_POST['content'])) {
-        $data['content'] = $_POST['content'];
-    }
-
-    if (isset($data['title']) && isset($data['content'])) {
-        //определим текущую дату и добавим к новости
-        $tek_data = date("d.m.Y") . " " .date("H:i:s");
-        $data['datetime'] = $tek_data;
-
-        if (false === News::insert_news($data)) {
-            echo 'Ошибка отправки новой новости!';
-            die;
-        }
-    }
+    $controllerNews->receivePostData($_POST);
 }
 
-$items = News::getAll();
+$controllerNews->$method();
 
-include __DIR__ . '/views/index.php';
 include __DIR__ . '/views/add.php';
 
 ?>
