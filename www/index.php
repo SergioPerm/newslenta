@@ -16,13 +16,14 @@ if (!empty($_POST)) {
         $tek_data = date("d.m.Y") . " " .date("H:i:s");
         $data['datetime'] = $tek_data;
 
-        NewArticle = new NewsA
-
-        news_insert($data);
+        if (false === News::insert_news($data)) {
+            echo 'Ошибка отправки новой новости!';
+            die;
+        }
     }
 }
 
-$items = news_getall();
+$items = News::getAll();
 
 include __DIR__ . '/views/index.php';
 include __DIR__ . '/views/add.php';
