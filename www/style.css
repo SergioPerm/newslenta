@@ -1,0 +1,13 @@
+body {
+    font-family: Verdana,  sans-serif; /* Семейство шрифтов */
+    font-size: 11pt; /* Размер основного шрифта в пунктах  */
+    background-color: #f0f0f0; /* Цвет фона веб-страницы */
+    color: #333; /* Цвет основного текста */
+}
+.newsblock {
+    width: 300px;
+    background: #ccc;
+    padding: 5px;
+    border: solid 1px black;
+    margin: 0 auto;
+}
