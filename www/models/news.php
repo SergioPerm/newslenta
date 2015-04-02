@@ -41,34 +41,4 @@ class News {
         return $db->queryOne('SELECT * FROM news WHERE id=' . $id, 'News');
     }
 }
-
-//function news_getall()
-//{
-//    $sqltext = 'SELECT * FROM news';
-//
-//    $BDNews = new BDNews('localhost','root','','newslenta');
-//    $news = $BDNews->receiveData($sqltext);
-//
-////    $news = sql_query($sqltext);
-//
-//    usort($news,'sortByDateTime');
-//
-//    return $news;
-//}
-//
-//function news_insert($data)
-//{
-//    $sqltext =
-//        "INSERT INTO news
-//        (datetime,title,content)
-//        VALUES
-//        (NOW(),'" . $data['title'] . "','" . $data['content'] . "')";
-//
-//    $BDNews = new BDNews('localhost','root','','newslenta');
-//    $BDNews->execData($sqltext);
-////    sql_exec($sqltext);
-//}
-
-
-
 ?>
