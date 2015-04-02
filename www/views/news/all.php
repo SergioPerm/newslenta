@@ -3,28 +3,10 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-<<<<<<< HEAD
-    <style>
-        .radius {
-            background: #fff; /* Цвет фона */
-            border-radius: 5px;
-        }
-        .textlabel {
-            border: 3px solid lightskyblue; /* Параметры рамки */
-            padding: 2px; /* Поля вокруг текста */
-            margin-bottom: 2px; /* Отступ снизу */
-        }
-    </style>
-</head>
-<body>
-
-<table border="1" width="800px" class="radius">
-=======
 </head>
 <body>
 
 <table border="1" width="800px">
->>>>>>> f376708dddf2b2339154e5ec3c7a14a8c6c5be0a
     <tr>
         <th>Дата и время </th>
         <th>Новость </th>
