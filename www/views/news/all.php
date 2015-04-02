@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+<<<<<<< HEAD
     <style>
         .radius {
             background: #fff; /* Цвет фона */
@@ -18,6 +19,12 @@
 <body>
 
 <table border="1" width="800px" class="radius">
+=======
+</head>
+<body>
+
+<table border="1" width="800px">
+>>>>>>> f376708dddf2b2339154e5ec3c7a14a8c6c5be0a
     <tr>
         <th>Дата и время </th>
         <th>Новость </th>
