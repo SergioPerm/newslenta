@@ -8,6 +8,7 @@ class NewsController {
     {
         $items = News::getAll();
         include __DIR__ . '/../views/news/all.php';
+        include __DIR__ . '/../views/add.php';
     }
 
     public function actionOne()
@@ -34,8 +35,9 @@ class NewsController {
             $data['datetime'] = $tek_data;
 
             if (false === News::insert_news($data)) {
-                echo 'Ошибка отправки новой новости!';
-                die;
+                return false;
+            } else {
+                return true;
             }
         }
     }
