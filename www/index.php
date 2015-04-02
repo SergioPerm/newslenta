@@ -18,6 +18,6 @@ if (!empty($_POST)) {
 
 $controllerNews->$method();
 
-include __DIR__ . '/views/add.php';
+//include __DIR__ . '/views/add.php';
 
 ?>
