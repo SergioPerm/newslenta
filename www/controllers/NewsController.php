@@ -2,9 +2,9 @@
 class NewsController {
     public function actionAll()
     {
-        $items = News::getAll();
+        $news = News::getAll();
         $view = new View();
-        $view->assign('items',$items);
+        $view->items = $news;
         $view->display('news/all.php');
     }
     public function actionOne()
@@ -12,7 +12,7 @@ class NewsController {
         $id = $_GET['id'];
         $item = News::getOne($id);
         $view = new View();
-        $view->assign('item',$item);
+        $view->item = $item;
         $view->display('news/one.php');
     }
 }
