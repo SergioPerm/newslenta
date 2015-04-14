@@ -1,6 +1,8 @@
 <?php
 
-abstract class AbstractModel {
+abstract class AbstractModel
+    implements IModel
+{
 
     protected static $table;
     protected static $class;
