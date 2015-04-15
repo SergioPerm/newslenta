@@ -5,6 +5,12 @@ class NewsController {
         $news = News::getAll();
         $view = new View();
         $view->items = $news;
+
+//        foreach ($view as $item) {
+//            var_dump($view->key(),$item);
+//        };
+//        die;
+
         $view->display('news/all.php');
     }
     public function actionOne()
