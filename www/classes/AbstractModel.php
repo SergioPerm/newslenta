@@ -16,6 +16,11 @@ abstract class AbstractModel
         return $this->data[$k];
     }
 
+    public function __isset($k)
+    {
+        return isset($this->data[$k]);
+    }
+
     public static function findAll()
     {
         $class = get_called_class();
@@ -34,15 +39,19 @@ abstract class AbstractModel
         return $db->query($sql,[':id' => $id])[0];
     }
 
-    public static function findByColumn($column,$value)
+    public static function findOneByColumn($column,$value)
     {
-        $class = get_called_class();
-
-        $sql = 'SELECT * FROM ' . static::$table . ' WHERE ' . $column . '=:' . $column;
-
         $db = new DB();
-        $db->setClassName($class);
-        return $db->query($sql,[':' . $column => $value]);
+
+        $sql = 'SELECT * FROM ' . static::$table . ' WHERE ' . $column . '=:value';
+
+        $db->setClassName(get_called_class());
+        $res = $db->query($sql,[':value' => $value]);
+
+        if (!empty($res)) {
+            return $res[0];
+        }
+        return false;
     }
 
     public function insert()
@@ -57,9 +66,7 @@ abstract class AbstractModel
 
         $db = new DB();
         if ($db->execute($sql,$data)) {
-            //тут надо что либо придумать чтобы правильно прочитать id только что записавшейся новости
-//            $sql = 'SELECT id FROM ' . static::$table . ' WHERE '
-
+            $this->id = $db->lastInsertId();
         }
 
     }

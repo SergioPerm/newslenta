@@ -13,7 +13,8 @@
     </tr>
     <?php foreach ($items as $item) : ?>
         <tr>
-            <td><?php echo $item->datetime;?><br/><b><a href="<?php echo 'http://newslenta/?ctrl=News&act=One&id=' . $item->id;?>">Ссылка</a></b></td>
+            <td><?php echo $item->datetime;?><br/><b><a href="<?php echo 'http://newslenta/?ctrl=News&act=One&id=' . $item->id;?>">Ссылка</a></b></br>
+            <a href="">Изм</a></td>
             <td><b><?php echo $item->title;?></b><br/><br/>
                 <?php echo $item->content;?></td>
         </tr>
