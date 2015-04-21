@@ -3,13 +3,11 @@
 class View
     implements Iterator
 {
-
-    protected $_position = 0;
     protected $data = [];
 
     public function __construct()
     {
-        $this->_position = 0;
+//        $this->_position = 0;
     }
 
     public function __set($k,$v)
@@ -33,26 +31,31 @@ class View
 
     public function current()
     {
-        return $this->data[$this->_position];
+        $data = current($this->data);
+        return $data;
     }
 
     public function next()
     {
-        ++$this->_position;
+        $data = next($this->data);
+        return $data;
     }
 
     public function key()
     {
-        return $this->_position;
+        $data = key($this->data);
+        return $data;
     }
 
     public function valid()
     {
-        return isset($this->data[$this->_position]);
+        $key = key($this->data);
+        $data = ($key !== NULL && $key !== FALSE);
+        return $data;
     }
 
     public function rewind()
     {
-        $this->_position = 0;
+        reset($this->data);
     }
 }

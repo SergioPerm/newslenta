@@ -2,38 +2,20 @@
 
 class DB {
 
+    private $dbh;
+
     public function __construct()
     {
-        mysql_connect('localhost','root','');
-        mysql_select_db('news');
+        $this->dbh = new PDO('mysql:dbname=news;host=localhost','root','');
     }
 
-    public function queryAll($sql, $class = 'stdClass')
+    public function query($sql, $params=[])
     {
-        $res = mysql_query($sql);
+        $sth = $this->dbh->prepare($sql);
+        $sth->execute($params);
 
-        if (false === $res) {
-            return false;
-        }
-
-        $ret = [];
-
-        while ($row = mysql_fetch_object($res, $class)) {
-            $ret[] = $row;
-        }
-        return $ret;
+        return $sth->fetchAll(PDO::FETCH_OBJ);
     }
-
-    public function queryOne($sql, $class = 'stdClass')
-    {
-        return $this->queryAll($sql,$class)[0];
-    }
-
-    public function execQuery($sql)
-    {
-        return mysql_query($sql);
-    }
-
 }
 
 ?>

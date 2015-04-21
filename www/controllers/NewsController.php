@@ -2,16 +2,20 @@
 class NewsController {
     public function actionAll()
     {
-        $news = News::getAll();
-        $view = new View();
-        $view->items = $news;
 
-//        foreach ($view as $item) {
-//            var_dump($view->key(),$item);
-//        };
-//        die;
-
-        $view->display('news/all.php');
+        $db = new DB();
+        $res = $db->query('SELECT * FROM news');
+        var_dump($res);
+        die;
+//        $news = News::getAll();
+//        $view = new View();
+//        $view->items = $news;
+//
+////        foreach ($view as $item) {
+////            var_dump($view->key(), $item);
+////        }
+//
+//        $view->display('news/all.php');
     }
     public function actionOne()
     {
