@@ -1,11 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kluv
- * Date: 21.04.2015
- * Time: 17:07
- */
 
+/**
+ * Class NewsModel
+ * @property $id
+ * @property $title
+ * @property $content
+ * @property $datetime
+ */
 class NewsModel
     extends AbstractModel
 {
