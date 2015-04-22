@@ -48,13 +48,17 @@ abstract class AbstractModel
         $db->setClassName(get_called_class());
         $res = $db->query($sql,[':value' => $value]);
 
+        if (empty($res)) {
+            throw new ModelException('В БД ничего не найдено!');
+        }
+
         if (!empty($res)) {
             return $res[0];
         }
         return false;
     }
 
-    public function insert()
+    protected function insert()
     {
         $cols = array_keys($this->data);
         $data = [];
@@ -68,7 +72,39 @@ abstract class AbstractModel
         if ($db->execute($sql,$data)) {
             $this->id = $db->lastInsertId();
         }
+    }
 
+    protected function update()
+    {
+        $cols = [];
+        $data = [];
+        foreach ($this->data as $k => $v) {
+            if ('datetime' == $k) {
+                continue;
+            }
+            $data[':' . $k] = $v;
+            if ('id' == $k || 'datetime' == $k) {
+                continue;
+            }
+            $cols[] = $k . '=:' . $k;
+        }
+
+        $sql = 'UPDATE ' . static::$table . '
+        SET ' . implode(', ', $cols) . '
+        WHERE id=:id
+        ';
+
+        $db = new DB();
+        $db->execute($sql, $data);
+    }
+
+    public function save()
+    {
+        if (!isset($this->id)) {
+            $this->insert();
+        } else {
+            $this->update();
+        }
     }
 
 } 

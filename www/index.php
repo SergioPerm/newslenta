@@ -16,7 +16,12 @@ $controllerClassName = $ctrl . 'Controller';
 $controllerNews = new $controllerClassName;
 $method = 'action' . $act;
 
-$controllerNews->$method();
-
-include __DIR__ . '/views/add.php';
+try {
+    $controllerNews->$method();
+    include __DIR__ . '/views/add.php';
+} catch (Exception $e) {
+    $view = new View();
+    $view->error = $e->getMessage();
+    $view->display('error.php');
+}
 ?>

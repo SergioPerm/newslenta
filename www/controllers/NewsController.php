@@ -2,15 +2,21 @@
 class NewsController {
     public function actionAll()
     {
-        $article = new NewsModel();
 
-//        var_dump($article::findByColumn('title','213123123'));die;
+            $art = NewsModel::findOneByColumn('title','Новый заголо23232323вок123123123!');
 
-        $news = $article->findAll();
 
-        $view = new View();
-        $view->items = $news;
-        $view->display('news/all.php');
+
+
+//        $article = new NewsModel();
+//
+////        var_dump($article::findByColumn('title','213123123'));die;
+//
+//        $news = $article->findAll();
+//
+//        $view = new View();
+//        $view->items = $news;
+//        $view->display('news/all.php');
     }
     public function actionOne()
     {
