@@ -2,6 +2,12 @@
 
 class AdminController {
 
+//    public function actionAll()
+//    {
+//        $view = new View();
+//        $view->display('add.php');
+//    }
+
     public function actionInsert()
     {
         if (!empty($_POST['title'])) {
@@ -21,7 +27,7 @@ class AdminController {
             $article->title = $data['title'];
             $article->content = $data['content'];
             $article->datetime = $data['datetime'];
-            $article->insert();
+            $article->save();
 
             $newsController = new NewsController();
             $newsController->actionAll();
